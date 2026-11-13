@@ -149,14 +149,21 @@ p{max-width:60ch;text-wrap:pretty}
   font:700 clamp(1.3rem,2.5vw,1.95rem)/1.25 var(--f);letter-spacing:-.015em;text-wrap:balance}
 .frases .aspa{color:var(--laranja)}
 
-/* ---------- 3. O que levas (só resultados) ---------- */
-.destaque{font:800 clamp(2rem,4.6vw,3.8rem)/1.06 var(--f);letter-spacing:-.025em;max-width:14ch;text-wrap:balance}
-.intro-lista{font-weight:700;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cinza)}
-.lista{list-style:none;margin-top:18px;border-top:1px solid var(--linha)}
-.lista li{display:grid;grid-template-columns:clamp(48px,6vw,72px) 1fr;gap:12px;padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--linha);
-  font-size:clamp(1.02rem,1.4vw,1.15rem);line-height:1.5;color:var(--cinza)}
-.lista b{font:800 clamp(1.3rem,2.2vw,1.7rem)/1.1 var(--f);color:var(--laranja)}
-.lista strong{font-weight:700;color:var(--branco)}
+/* ---------- 3. O que levas: eixo centrado (como o hero) + 4 resultados em colunas ---------- */
+.levas{text-align:center;overflow:hidden}
+.levas::before{content:"";position:absolute;left:50%;top:0;width:min(120vw,1100px);aspect-ratio:2/1;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(255,122,0,.14),transparent);pointer-events:none}
+.levas .eyebrow,.levas .intro-lista{display:block;margin-left:auto;margin-right:auto}
+.destaque{margin:20px auto 0;font:800 clamp(2.1rem,5.4vw,4.6rem)/1.04 var(--f);letter-spacing:-.025em;max-width:18ch;text-wrap:balance}
+.levas .filete{margin:28px auto 0;width:min(50%,420px);height:3px;border-radius:3px}
+.intro-lista{margin-top:clamp(48px,6vw,80px);font-weight:700;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cinza)}
+.resultados{list-style:none;margin-top:28px;display:grid;grid-template-columns:1fr;gap:clamp(28px,3vw,40px);text-align:left}
+@media (min-width:560px){.resultados{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.resultados{grid-template-columns:repeat(4,1fr)}}
+.resultados li{padding-top:22px;border-top:2px solid var(--laranja)}
+.resultados b{display:block;font:900 clamp(2.4rem,4vw,3.4rem)/1 var(--f);color:var(--laranja);letter-spacing:-.03em}
+.resultados strong{display:block;margin-top:14px;font:800 clamp(1.1rem,1.5vw,1.25rem)/1.25 var(--f)}
+.resultados span{display:block;margin-top:8px;color:var(--cinza);font-size:.98rem;line-height:1.5}
 
 /* ---------- 4. Quem sou (palco + desporto) ---------- */
 .quem{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,80px);align-items:center}
@@ -288,21 +295,18 @@ p{max-width:60ch;text-wrap:pretty}
   </section>
 
   <!-- 3. O QUE LEVAS DAQUI (só resultados; a experiência é surpresa) -->
-  <section class="sec">
-    <div class="wrap duas">
-      <div class="fixa">
-        <p class="eyebrow rv">O que levas daqui</p>
-        <p class="destaque rv" style="margin-top:20px">Saber, toda a gente sabe, <span class="laranja">mas fazer é emocional.</span></p>
-      </div>
-      <div>
-        <p class="intro-lista rv">Em 4 horas vais</p>
-        <ol class="lista">
-          <li class="rv"><b>01</b><span><strong>Reconhecer os padrões</strong> que te fazem começar, parar e adiar.</span></li>
-          <li class="rv" style="--i:1"><b>02</b><span><strong>Dominar o teu estado</strong>, porque a qualidade das tuas decisões depende da energia em que as tomas.</span></li>
-          <li class="rv" style="--i:2"><b>03</b><span><strong>Entender o poder da tua identidade</strong>, a de quem age com medo e repete até ganhar.</span></li>
-          <li class="rv" style="--i:3"><b>04</b><span><strong>Sair mais confiante</strong> e com as decisões que andas a adiar tomadas.</span></li>
-        </ol>
-      </div>
+  <section class="sec levas">
+    <div class="wrap">
+      <p class="eyebrow rv">O que levas daqui</p>
+      <p class="destaque rv">Saber, toda a gente sabe, <span class="laranja">mas fazer é emocional.</span></p>
+      <hr class="filete rv">
+      <p class="intro-lista rv">Em 4 horas vais</p>
+      <ol class="resultados">
+        <li class="rv"><b>01</b><strong>Reconhecer os padrões</strong><span>que te fazem começar, parar e adiar.</span></li>
+        <li class="rv" style="--i:1"><b>02</b><strong>Dominar o teu estado</strong><span>porque as tuas decisões dependem da energia em que as tomas.</span></li>
+        <li class="rv" style="--i:2"><b>03</b><strong>Entender o poder da tua identidade</strong><span>a de quem age com medo e repete até ganhar.</span></li>
+        <li class="rv" style="--i:3"><b>04</b><strong>Sair mais confiante</strong><span>e com as decisões que andas a adiar tomadas.</span></li>
+      </ol>
     </div>
   </section>
 
@@ -322,7 +326,7 @@ p{max-width:60ch;text-wrap:pretty}
       <div class="desporto">
         <img class="rv" src="assets/img/andebol.webp" alt="Whelisson em jogo de andebol, com a bola, camisola azul n.º 2" width="960" height="960" style="object-position:32% 50%" loading="lazy" decoding="async">
         <img class="rv" style="--i:1;object-position:50% 20%" src="assets/img/corrida.webp" alt="Whelisson de braços abertos na meia maratona" width="1333" height="2000" loading="lazy" decoding="async">
-        <blockquote class="rv" style="--i:2">No desporto aprendi cedo o que muitos empresários descobrem tarde: <span class="laranja">o resultado é de quem repete.</span></blockquote>
+        <blockquote class="rv" style="--i:2">No desporto aprendi cedo o que muitos empresários descobrem tarde: <span class="laranja">o resultado é de quem repete por tempo suficiente.</span></blockquote>
       </div>
     </div>
   </section>
