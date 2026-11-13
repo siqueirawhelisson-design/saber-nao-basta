@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inscrição confirmada | Saber Não Basta</title>
+<meta name="description" content="Tens um convite para o Saber Não Basta. 5 de dezembro, das 14:00 às 18:00, Orbit Linda-a-Velha. Entrada gratuita para convidados.">
+<!-- página só para quem recebe o link: fora dos motores de busca -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0B0B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tens um convite | Saber Não Basta">
+<meta property="og:description" content="5 de dezembro, das 14:00 às 18:00, Orbit Linda-a-Velha. Entrada gratuita para convidados.">
+<meta property="og:image" content="https://whelissonsantos.com/assets/img/og.jpg">
+<meta property="og:url" content="https://whelissonsantos.com/convidado/">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="../assets/img/hero.webp">
+<style>
+/* ============================================================
+   TOKENS: os mesmos da página principal (preto + laranja)
+   ============================================================ */
+:root{
+  --preto:#0B0B0B;
+  --grafite:#141414;
+  --campo:#1B1B1B;          /* fundo dos campos do formulário */
+  --laranja:#FF7A00;        /* 8,1:1 sobre #0B0B0B */
+  --queimado:#E05A00;
+  --branco:#FFFFFF;
+  --cinza:#BDBDBD;          /* 10,6:1 sobre #0B0B0B */
+  --erro:#FF6B5B;
+  --linha:rgba(255,255,255,.12);
+  --f:'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sec:clamp(64px,8vw,112px);
+  --max:1200px;
+  --pad:clamp(20px,5vw,64px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font:400 17px/1.65 var(--f);color:var(--branco);background:var(--preto);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (max-width:620px){body{font-size:16px}}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+::selection{background:var(--laranja);color:var(--preto)}
+:focus-visible{outline:2px solid var(--laranja);outline-offset:3px}
+.saltar{position:absolute;left:-9999px;top:8px;background:var(--laranja);color:var(--preto);padding:10px 16px;border-radius:8px;z-index:99;font-weight:700}
+.saltar:focus{left:8px}
+
+h1,h2{font-weight:800;line-height:1.08;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:clamp(2rem,4.6vw,3.3rem);max-width:16ch}
+p{max-width:60ch;text-wrap:pretty}
+.cinza{color:var(--cinza)}
+.laranja{color:var(--laranja)}
+.eyebrow{font:700 .74rem/1.4 var(--f);letter-spacing:.24em;text-transform:uppercase;color:var(--laranja)}
+.eyebrow + h2{margin-top:20px}
+.filete{display:block;height:3px;border:0;border-radius:3px;
+  background:linear-gradient(90deg,transparent,var(--laranja) 18%,var(--queimado) 82%,transparent)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- Botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:18px 34px;border-radius:8px;border:0;cursor:pointer;
+  background:var(--laranja);color:var(--preto);font:800 1rem/1.2 var(--f);letter-spacing:.02em;text-decoration:none;text-align:center;
+  background-image:linear-gradient(90deg,var(--queimado),var(--queimado));background-size:0 100%;background-repeat:no-repeat;
+  transition:background-size .4s var(--ease),transform .2s var(--ease),opacity .3s}
+.btn:hover{background-size:100% 100%}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn--linha{background:transparent;color:var(--branco);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);
+  background-image:linear-gradient(90deg,rgba(255,122,0,.16),rgba(255,122,0,.16))}
+.btn--linha:hover{box-shadow:inset 0 0 0 1.5px var(--laranja)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- Topo: réplica compacta do banner ---------- */
+.hero{position:relative;padding:28px 0 clamp(48px,6vw,72px);overflow:hidden;text-align:center;
+  background:radial-gradient(70% 55% at 50% 30%,#2a1a10 0%,transparent 70%),var(--preto)}
+.hero__lado{position:absolute;top:0;z-index:0;pointer-events:none;background-size:cover;background-repeat:no-repeat}
+.hero__lado--e{left:0;width:40%;height:66%;background-image:url(../assets/img/bandeira.webp);background-position:right top;
+  -webkit-mask-image:linear-gradient(90deg,#000 45%,transparent),linear-gradient(#000 55%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,#000 45%,transparent),linear-gradient(#000 55%,transparent);mask-composite:intersect}
+.hero__lado--d{right:0;width:50%;height:70%;background-image:url(../assets/img/ponte.webp);background-position:left top;
+  -webkit-mask-image:linear-gradient(270deg,#000 55%,transparent),linear-gradient(#000 55%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(270deg,#000 55%,transparent),linear-gradient(#000 55%,transparent);mask-composite:intersect}
+.hero .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.selo{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;border:1px solid rgba(255,122,0,.5);
+  background:rgba(11,11,11,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font:700 .72rem/1 var(--f);letter-spacing:.2em;text-transform:uppercase}
+.selo::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--laranja)}
+.hero__figura{width:min(70vw,300px);margin:20px auto 0}
+.hero__figura img{width:100%;-webkit-mask-image:linear-gradient(#000 78%,transparent 99%);mask-image:linear-gradient(#000 78%,transparent 99%)}
+.hero h1{position:relative;margin-top:-10%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
+  font-size:clamp(2.5rem,11.5vw,5rem);text-shadow:0 4px 24px rgba(0,0,0,.7)}
+.hero h1 span{display:block}
+.hero .filete{margin:16px auto 0;width:min(56%,560px)}
+.hero__sub{margin:18px auto 0;font-size:clamp(1rem,1.5vw,1.25rem);font-weight:500;line-height:1.45;max-width:50ch}
+.hero__dados{display:flex;flex-direction:column;align-items:center;margin-top:22px;font-weight:700;font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.3}
+.hero__dados > div{padding:10px 0}
+.hero__dados > div + div{border-top:2px solid var(--laranja);border-image:linear-gradient(90deg,transparent 35%,var(--laranja) 35% 65%,transparent 65%) 1}
+.hero__dados small{display:block;font-weight:500;font-size:.72em;color:var(--cinza)}
+.hero .btn{margin-top:26px}
+@media (max-width:759px){
+  .hero__lado--e{width:60%;height:46%;opacity:.8}
+  .hero__lado--d{width:60%;height:42%;opacity:.8}
+}
+@media (min-width:760px){
+  .hero__figura{width:min(30vw,40svh,420px)}
+  .hero h1{font-size:min(6vw,9svh,6rem);white-space:nowrap}
+  .hero h1 span{display:inline}
+  .hero__dados{flex-direction:row}
+  .hero__dados > div{padding:2px clamp(20px,3vw,40px)}
+  .hero__dados > div + div{border-top:0;border-image:none;border-left:2px solid var(--laranja)}
+  .hero__dados > div:last-child{text-align:left}
+}
+
+/* ---------- Confirmação ---------- */
+.conf{position:relative;padding:var(--sec) 0;overflow:hidden;
+  background:linear-gradient(180deg,var(--preto) 0,var(--grafite) 140px,var(--grafite) calc(100% - 140px),var(--preto) 100%)}
+.conf::before{content:"";position:absolute;right:max(-60vw,-520px);bottom:max(-60vw,-520px);width:min(120vw,1040px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,122,0,.18),rgba(224,90,0,.06) 55%,transparent);pointer-events:none}
+.conf .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,80px);align-items:start}
+@media (min-width:940px){.conf .wrap{grid-template-columns:.85fr 1.15fr}}
+.conf .lead{margin-top:22px;color:var(--cinza);font-size:clamp(1rem,1.3vw,1.1rem);max-width:40ch}
+.dados{margin-top:32px;border-top:1px solid var(--linha)}
+.dados div{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid var(--linha);align-items:baseline}
+.dados dt{font:800 .74rem/1.4 var(--f);letter-spacing:.22em;color:var(--laranja)}
+.dados dd{font-weight:600;font-size:1.02rem;line-height:1.45}
+.dados dd span{display:block;font-weight:500;color:var(--cinza)}
+
+/* cartão do formulário: contorno laranja fino, como um bilhete */
+.cartao{position:relative;background:rgba(11,11,11,.72);border:1px solid rgba(255,122,0,.35);border-radius:14px;
+  padding:clamp(24px,4vw,44px);box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
+.cartao::before{content:"";position:absolute;left:clamp(24px,4vw,44px);right:clamp(24px,4vw,44px);top:-1px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--laranja),var(--queimado))}
+.cartao__titulo{font:800 clamp(1.3rem,2vw,1.6rem)/1.2 var(--f);letter-spacing:-.01em}
+.cartao__nota{margin-top:8px;color:var(--cinza);font-size:.95rem}
+
+form{margin-top:28px;display:grid;gap:20px}
+.campo label{display:block;margin-bottom:8px;font:700 .78rem/1.3 var(--f);letter-spacing:.14em;text-transform:uppercase}
+.campo input{width:100%;min-height:56px;padding:16px 18px;border-radius:8px;border:1px solid var(--linha);background:var(--campo);
+  color:var(--branco);font:500 1rem/1.3 var(--f);transition:border-color .25s,box-shadow .25s,background .25s}
+.campo input::placeholder{color:#7A7A7A}
+.campo input:hover{border-color:rgba(255,255,255,.28)}
+.campo input:focus{outline:0;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(255,122,0,.22);background:#1E1A16}
+.campo.invalido input{border-color:var(--erro)}
+.campo .msg{display:none;margin-top:6px;font-size:.86rem;font-weight:600;color:var(--erro)}
+.campo.invalido .msg{display:block}
+@media (min-width:620px){.par{display:grid;grid-template-columns:1fr 1fr;gap:20px}}
+.par{display:grid;gap:20px}
+.isca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+form .btn{width:100%;margin-top:6px}
+.rgpd{font-size:.82rem;color:#9A9A9A;line-height:1.5}
+.aviso{display:none;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,107,91,.5);background:rgba(255,107,91,.08);font-size:.92rem;font-weight:500}
+.aviso.on{display:block}
+.aviso a{color:var(--laranja);font-weight:700}
+.girar{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(11,11,11,.3);border-top-color:var(--preto);animation:gira .8s linear infinite;display:none}
+.btn.aenviar .girar{display:block}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+/* ---------- Ecrã de sucesso ---------- */
+.ok{display:none}
+.cartao.feito form,.cartao.feito .cartao__cab{display:none}
+.cartao.feito .ok{display:block;animation:entra .7s var(--ease)}
+@keyframes entra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.ok__check{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--laranja);color:var(--preto);
+  box-shadow:0 0 0 10px rgba(255,122,0,.14)}
+.ok__check svg{width:30px;height:30px}
+.ok h3{margin-top:26px;font:900 clamp(1.7rem,3.2vw,2.4rem)/1.1 var(--f);letter-spacing:-.02em;text-wrap:balance}
+.ok p{margin-top:14px;color:var(--cinza)}
+.passos{list-style:none;margin-top:28px;border-top:1px solid var(--linha)}
+.passos li{padding:20px 0;border-bottom:1px solid var(--linha)}
+.passos b{display:block;font:800 .74rem/1.4 var(--f);letter-spacing:.22em;color:var(--laranja);text-transform:uppercase}
+.passos strong{display:block;margin-top:6px;font-weight:700;font-size:1.05rem}
+.passos .btn{margin-top:14px;width:100%}
+.agenda{display:grid;gap:10px;margin-top:14px}
+@media (min-width:520px){.agenda{grid-template-columns:1fr 1fr}}
+.agenda .btn{margin-top:0;min-height:52px;padding:14px 18px;font-size:.92rem}
+.btn--wa{background:#25D366;color:#0B0B0B;background-image:linear-gradient(90deg,#1EBE5A,#1EBE5A)}
+
+/* ---------- Rodapé ---------- */
+.rodape{border-top:1px solid var(--linha);padding:32px 0 calc(32px + env(safe-area-inset-bottom));font-size:.9rem;color:var(--cinza)}
+.rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.rodape a{color:var(--branco);text-decoration:none;border-bottom:1px solid var(--laranja)}
+.rodape small{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#8A8A8A}
+.rodape small a{color:var(--laranja);border:0}
+.rodape__marca{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.rodape a.social{display:inline-flex;align-items:center;gap:8px;border-bottom:0;transition:color .25s}
+.rodape a.social svg{width:22px;height:22px;color:var(--laranja)}
+.rodape a.social:hover{color:var(--laranja)}
+
+/* ---------- Entrada suave ---------- */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0) * 80ms)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="saltar" href="#confirmar">Saltar para os próximos passos</a>
+
+<main>
+  <!-- 1. TOPO -->
+  <section class="hero">
+    <span class="hero__lado hero__lado--e" aria-hidden="true"></span>
+    <span class="hero__lado hero__lado--d" aria-hidden="true"></span>
+    <div class="wrap">
+      <p class="selo rv">Pagamento confirmado · Lugar garantido</p>
+      <div class="hero__figura rv" style="--i:1">
+        <img src="../assets/img/hero.webp" alt="Whelisson Santos, de fato cinza e braços cruzados" width="1023" height="1300" fetchpriority="high">
+      </div>
+      <h1 class="rv" style="--i:2"><span>Saber</span> <span class="laranja">Não basta</span></h1>
+      <hr class="filete rv" style="--i:2">
+      <p class="hero__sub rv" style="--i:3">Tu sabes o que tens de fazer para crescer. Neste dia descobres porque não fazes, e como mudar isso antes de 2027.</p>
+      <div class="hero__dados rv" style="--i:3">
+        <div>5 de dezembro</div>
+        <div>das 14:00 às 18:00</div>
+        <div>Orbit, Linda Velha<small>Largo da Lagoa 15, Lisboa, Portugal</small></div>
+      </div>
+      <a class="btn rv" style="--i:4" href="#confirmar">Ver os próximos passos</a>
+    </div>
+  </section>
+
+  <!-- 2. CONFIRMAÇÃO -->
+  <section class="conf" id="confirmar">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow rv">A tua inscrição</p>
+        <h2 class="rv">Pagamento confirmado, <span class="laranja">o teu lugar está garantido.</span></h2>
+        <p class="lead rv">Obrigado pela confiança. Guarda esta página e segue os dois passos ao lado para não perderes nada até ao dia do evento.</p>
+        <dl class="dados rv">
+          <div><dt>DATA</dt><dd>Sábado, 5 de dezembro</dd></div>
+          <div><dt>HORA</dt><dd>das 14:00 às 18:00</dd></div>
+          <div><dt>LOCAL</dt><dd>Orbit, Linda Velha<span>Largo da Lagoa 15, Lisboa, Portugal</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="cartao feito rv" id="cartao">
+        <div class="ok" id="ok" tabindex="-1">
+          <div class="ok__check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h3>Estás inscrito.</h3>
+          <p>O teu lugar está confirmado. Faltam só dois passos para não perderes nada.</p>
+          <ol class="passos">
+            <li>
+              <b>Passo 1</b>
+              <strong>Entra no grupo do evento</strong>
+              <a class="btn btn--wa" id="grupo" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>Entrar no grupo do WhatsApp</a>
+            </li>
+            <li>
+              <b>Passo 2</b>
+              <strong>Guarda a data no teu calendário</strong>
+              <div class="agenda">
+                <a class="btn btn--linha" id="gcal" href="#" target="_blank" rel="noopener">Google Calendar</a>
+                <a class="btn btn--linha" id="ics" href="#" download="saber-nao-basta.ics">iPhone / Outlook</a>
+              </div>
+            </li>
+            <li>
+              <b>No dia</b>
+              <strong>Orbit, Largo da Lagoa 15, Linda-a-Velha</strong>
+              <a class="btn btn--linha" id="mapa" href="#" target="_blank" rel="noopener">Abrir no Google Maps</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape__marca"><span>Whelisson Santos</span><a class="social" href="https://www.instagram.com/whelissonsantos/" target="_blank" rel="noopener" aria-label="Instagram @whelissonsantos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg><span>@whelissonsantos</span></a><a class="social" href="https://www.youtube.com/@WhelissonSantos" target="_blank" rel="noopener" aria-label="Canal do YouTube Whelisson Santos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.9 3.1-5.9 3.1z"/></svg><span>YouTube</span></a></div>
+    <small>Design e desenvolvimento: <a href="https://www.instagram.com/ogrupocado/" target="_blank" rel="noopener">Grupo Cado</a></small>
+  </div>
+</footer>
+
+<script>
+/* ===== DADOS: tudo o que muda fica aqui ===== */
+const DADOS = {
+  grupoWhatsapp: 'https://chat.whatsapp.com/Lb2lbgGcRlxBcj7z9tw6Rr',
+  whatsapp: '351933345075',
+  evento: {
+    titulo: 'Saber Não Basta | Whelisson Santos',
+    inicio: '20261205T140000',
+    fim:    '20261205T180000',
+    fuso:   'Europe/Lisbon',
+    local:  'Orbit, Largo da Lagoa 15, Linda-a-Velha, Portugal',
+    descricao: 'Tu sabes o que tens de fazer para crescer. Neste dia descobres porque não fazes, e como mudar isso antes de 2027.'
+  }
+};
+
+document.documentElement.classList.add('js');
+
+/* Entrada suave */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.1});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* Links do ecrã de sucesso */
+const ev = DADOS.evento;
+document.getElementById('grupo').href = DADOS.grupoWhatsapp;
+document.getElementById('mapa').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ev.local);
+document.getElementById('gcal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+  + '&text=' + encodeURIComponent(ev.titulo)
+  + '&dates=' + ev.inicio + '/' + ev.fim
+  + '&ctz=' + encodeURIComponent(ev.fuso)
+  + '&location=' + encodeURIComponent(ev.local)
+  + '&details=' + encodeURIComponent(ev.descricao + '\n\nGrupo do evento: ' + DADOS.grupoWhatsapp);
+const ics = [
+  'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Grupo Cado//Saber Nao Basta//PT','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+  'BEGIN:VTIMEZONE','TZID:Europe/Lisbon',
+  'BEGIN:STANDARD','DTSTART:19701025T020000','TZOFFSETFROM:+0100','TZOFFSETTO:+0000','RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU','END:STANDARD',
+  'BEGIN:DAYLIGHT','DTSTART:19700329T010000','TZOFFSETFROM:+0000','TZOFFSETTO:+0100','RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU','END:DAYLIGHT',
+  'END:VTIMEZONE',
+  'BEGIN:VEVENT','UID:saber-nao-basta-20261205@whelissonsantos.com','DTSTAMP:20261113T120000Z',
+  'DTSTART;TZID=Europe/Lisbon:' + ev.inicio,'DTEND;TZID=Europe/Lisbon:' + ev.fim,
+  'SUMMARY:' + ev.titulo,'LOCATION:' + ev.local.replace(/,/g,'\\,'),
+  'DESCRIPTION:' + (ev.descricao + '\\n\\nGrupo do evento: ' + DADOS.grupoWhatsapp).replace(/,/g,'\\,'),
+  'BEGIN:VALARM','TRIGGER:-PT24H','ACTION:DISPLAY','DESCRIPTION:Amanhã é o Saber Não Basta','END:VALARM',
+  'END:VEVENT','END:VCALENDAR'
+].join('\r\n');
+document.getElementById('ics').href = URL.createObjectURL(new Blob([ics], {type:'text/calendar;charset=utf-8'}));
+
+</script>
+</body>
+</html>
