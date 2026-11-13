@@ -233,7 +233,7 @@ p{max-width:60ch;text-wrap:pretty}
 .rodape a.social{display:inline-flex;align-items:center;gap:8px;border-bottom:0;color:var(--branco);transition:color .25s}
 .rodape a.social svg{width:22px;height:22px;color:var(--laranja)}
 .rodape a.social:hover{color:var(--laranja)}
-.rodape a.cado{font-weight:900;font-size:1.05rem;letter-spacing:.06em;color:var(--laranja);border-bottom:0;transition:color .25s}
+.rodape a.cado{font:inherit;letter-spacing:inherit;color:var(--laranja);border-bottom:0;transition:color .25s}
 .rodape a.cado:hover{color:var(--branco)}
 .rodape small{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#8A8A8A}
 @media (max-width:860px){.rodape{padding-bottom:calc(110px + env(safe-area-inset-bottom))}}
@@ -276,8 +276,8 @@ p{max-width:60ch;text-wrap:pretty}
 /* depois de entrar: as letras reagem ao rato (só em computador) */
 @media (hover:hover){
   .sp.feito .l{transition:transform .45s cubic-bezier(.2,.9,.2,1),color .3s}
-  .sp.feito .l:hover{transform:translateY(-.14em) rotate(-4deg);color:var(--laranja)}
-  .sp.feito .laranja .l:hover{color:var(--branco)}
+  h1.sp.feito .l:hover,.titulo-evento.sp.feito .l:hover{transform:translateY(-.12em);color:var(--laranja)}
+  h1.sp.feito .laranja .l:hover,.titulo-evento.sp.feito .laranja .l:hover{color:var(--branco)}
 }
 
 /* frases da dor: entram alternadas da esquerda e da direita */
@@ -529,10 +529,11 @@ document.querySelectorAll('[data-split]').forEach(el => {
           const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden','true');
           [...t].forEach(ch => {
             const l = document.createElement('span'); l.className = 'l'; l.textContent = ch;
-            l.style.setProperty('--d', (n * (lados ? 38 : 22)) + 'ms');
-            if (lados) l.style.setProperty('--x', (n % 2 ? 1 : -1) * (40 + (n * 7) % 50) + 'px');
-            n++; w.appendChild(l);
+            l.style.setProperty('--d', (n * (lados ? 110 : 80)) + 'ms');
+            if (lados) l.style.setProperty('--x', (n % 2 ? 1 : -1) * 70 + 'px');
+            w.appendChild(l);
           });
+          n++;
           frag.appendChild(w);
         });
         c.replaceWith(frag);
@@ -541,7 +542,7 @@ document.querySelectorAll('[data-split]').forEach(el => {
   };
   parte(el);
   /* depois da entrada, liberta as letras para reagirem ao rato */
-  const total = n * (lados ? 38 : 22) + 1200;
+  const total = n * (lados ? 110 : 80) + 1200;
   new MutationObserver((m, o) => { if (el.classList.contains('in')) { setTimeout(() => el.classList.add('feito'), total); o.disconnect(); } })
     .observe(el, {attributes:true, attributeFilter:['class']});
 });
