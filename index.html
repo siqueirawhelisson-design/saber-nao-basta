@@ -224,6 +224,11 @@ p{max-width:60ch;text-wrap:pretty}
 .rodape{background:var(--preto);border-top:1px solid var(--linha);padding:40px 0 calc(40px + env(safe-area-inset-bottom));font-size:.9rem;color:var(--cinza)}
 .rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .rodape a{color:var(--branco);text-decoration:none;border-bottom:1px solid var(--laranja)}
+.rodape .wrap{align-items:center}
+.rodape__marca{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.rodape a.social{display:inline-flex;align-items:center;gap:8px;border-bottom:0;color:var(--branco);transition:color .25s}
+.rodape a.social svg{width:22px;height:22px;color:var(--laranja)}
+.rodape a.social:hover{color:var(--laranja)}
 .rodape small{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
 @media (max-width:860px){.rodape{padding-bottom:calc(110px + env(safe-area-inset-bottom))}}
 
@@ -381,7 +386,7 @@ p{max-width:60ch;text-wrap:pretty}
 
 <footer class="rodape" id="rodape">
   <div class="wrap">
-    <p>Whelisson Santos · Instagram <a href="https://www.instagram.com/whelissonsantos/" target="_blank" rel="noopener">@whelissonsantos</a></p>
+    <div class="rodape__marca"><span>Whelisson Santos</span><a class="social" href="https://www.instagram.com/whelissonsantos/" target="_blank" rel="noopener" aria-label="Instagram @whelissonsantos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg><span>@whelissonsantos</span></a><a class="social" href="https://www.youtube.com/@WhelissonSantos" target="_blank" rel="noopener" aria-label="Canal do YouTube Whelisson Santos"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.9 3.1-5.9 3.1z"/></svg><span>YouTube</span></a></div>
     <small>Design e desenvolvimento: Grupo Cado</small>
   </div>
 </footer>
