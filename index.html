@@ -252,6 +252,74 @@ p{max-width:60ch;text-wrap:pretty}
   *,*::before,*::after{transition:none!important;scroll-behavior:auto!important}
   .js .rv{opacity:1;transform:none}
 }
+
+/* ============================================================
+   MOVIMENTO (referências: páginas de evento premiadas Awwwards)
+   - títulos letra a letra por trás de máscara
+   - frases a entrar de lados alternados
+   - fotos reveladas em cortina
+   - linhas laranja que se desenham
+   - letras que reagem ao rato · botões magnéticos
+   ============================================================ */
+.progresso{position:fixed;left:0;top:0;height:2px;width:100%;z-index:60;background:var(--laranja);transform:scaleX(0);transform-origin:left;pointer-events:none}
+
+/* texto dividido: palavras com máscara, letras sobem */
+.sp .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .12em;margin-bottom:-.12em}
+.sp .l{display:inline-block;will-change:transform}
+.js .sp .l{transform:translateY(110%);transition:transform .95s cubic-bezier(.2,.9,.2,1) var(--d,0ms),color .3s}
+.js .sp.in .l{transform:none}
+.js .sp.rv{opacity:1;transform:none}
+/* variante "lados": cada letra vem de um lado */
+.sp-lados .w{overflow:visible}
+.js .sp-lados .l{opacity:0;transform:translateX(var(--x,0)) ;filter:blur(6px);transition:transform 1.1s cubic-bezier(.2,.9,.2,1) var(--d,0ms),opacity .9s var(--d,0ms),filter .9s var(--d,0ms),color .3s}
+.js .sp-lados.in .l{opacity:1;transform:none;filter:none}
+/* depois de entrar: as letras reagem ao rato (só em computador) */
+@media (hover:hover){
+  .sp.feito .l{transition:transform .45s cubic-bezier(.2,.9,.2,1),color .3s}
+  .sp.feito .l:hover{transform:translateY(-.14em) rotate(-4deg);color:var(--laranja)}
+  .sp.feito .laranja .l:hover{color:var(--branco)}
+}
+
+/* frases da dor: entram alternadas da esquerda e da direita */
+.js .frases li.rv:nth-child(odd){transform:translateX(-64px)}
+.js .frases li.rv:nth-child(even){transform:translateX(64px)}
+.js .frases li.rv{transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .frases li.rv.in{transform:none}
+@media (hover:hover){.frases li{transition:color .3s,padding-left .4s var(--ease)}.frases li:hover{padding-left:14px}}
+
+/* fotos: cortina de baixo para cima + zoom a assentar */
+.js img.rv.revela{opacity:1;clip-path:inset(100% 0 0 0);transform:scale(1.12);
+  transition:clip-path 1.25s cubic-bezier(.77,0,.18,1) calc(var(--i,0) * 120ms),transform 1.8s var(--ease) calc(var(--i,0) * 120ms)}
+.js img.rv.revela.in{clip-path:inset(0 0 0 0);transform:none}
+
+/* linhas laranja desenham-se */
+.js hr.filete.rv{opacity:1;transform:scaleX(0);transition:transform 1.1s var(--ease) .25s}
+.js .quem hr.filete.rv{transform-origin:left}
+.js hr.filete.rv.in{transform:none}
+
+/* resultados: a linha de cima desenha-se e o número sobe */
+.resultados li{border-top:0;background:linear-gradient(var(--laranja),var(--laranja)) left top/0 2px no-repeat;transition:background-size 1s var(--ease) calc(var(--i,0) * 120ms + .1s),opacity .8s var(--ease),transform .8s var(--ease)}
+.resultados li.in{background-size:100% 2px}
+.resultados b{overflow:hidden}
+@media (hover:hover){.resultados li{transition:background-size 1s var(--ease),transform .4s var(--ease),opacity .8s}.resultados li:hover{transform:translateY(-6px)}}
+
+/* perguntas: cartão levanta ligeiramente */
+@media (hover:hover){.faq details{transition:border-color .3s,background .3s,transform .35s var(--ease)}.faq details:hover{transform:translateY(-3px)}}
+
+/* botões magnéticos */
+.btn{will-change:transform}
+.btn.mag{transition:background-size .4s var(--ease),transform .25s cubic-bezier(.2,.9,.2,1)}
+
+/* bandeira e ponte: paralaxe suave no scroll */
+.hero__lado{will-change:transform}
+
+@media (prefers-reduced-motion:reduce){
+  .js .sp .l,.js .sp-lados .l{transform:none!important;opacity:1!important;filter:none!important}
+  .js img.rv.revela{clip-path:none;transform:none}
+  .js hr.filete.rv{transform:none}
+  .resultados li{background-size:100% 2px}
+  .progresso{display:none}
+}
 </style>
 </head>
 <body>
@@ -268,6 +336,7 @@ p{max-width:60ch;text-wrap:pretty}
 
   <!-- 1. TOPO -->
   <section class="hero" id="hero">
+    <div class="progresso" id="progresso" aria-hidden="true"></div>
     <span class="hero__lado hero__lado--e" aria-hidden="true"></span>
     <span class="hero__lado hero__lado--d" aria-hidden="true"></span>
     <span class="hero__arco hero__arco--e" aria-hidden="true"></span>
@@ -276,7 +345,7 @@ p{max-width:60ch;text-wrap:pretty}
       <div class="hero__figura rv">
         <img src="assets/img/hero.webp" alt="Whelisson Santos, de fato cinza e braços cruzados" width="1023" height="1300" fetchpriority="high">
       </div>
-      <h1 class="rv" style="--i:1"><span>Saber</span> <span class="laranja">Não basta</span></h1>
+      <h1 class="rv" style="--i:1" data-split><span>Saber</span> <span class="laranja">Não basta</span></h1>
       <hr class="filete rv" style="--i:2">
       <p class="hero__sub rv" style="--i:2">Tu sabes o que tens de fazer para crescer. Neste dia descobres porque não fazes, e como mudar isso antes de 2027.</p>
       <p class="hero__com cinza rv" style="--i:3">Com Whelisson Santos, ex-atleta profissional e especialista em alta performance.</p>
@@ -294,7 +363,7 @@ p{max-width:60ch;text-wrap:pretty}
     <div class="wrap duas">
       <div class="fixa">
         <p class="eyebrow rv">Deixa estas frases à porta</p>
-        <h2 class="rv">Se uma destas frases é tua, <span class="laranja">esta tarde foi pensada para ti.</span></h2>
+        <h2 class="rv" data-split>Se uma destas frases é tua, <span class="laranja">esta tarde foi pensada para ti.</span></h2>
         <p class="sub rv">Para empresários, autónomos, vendedores e profissionais liberais, e para quem não aguenta mais viver uma vida sem resultados.</p>
       </div>
       <ul class="frases">
@@ -311,7 +380,7 @@ p{max-width:60ch;text-wrap:pretty}
   <section class="sec levas">
     <div class="wrap">
       <p class="eyebrow rv">O que levas daqui</p>
-      <p class="destaque rv">Saber, toda a gente sabe, <span class="laranja">mas fazer é emocional.</span></p>
+      <p class="destaque rv" data-split>Saber, toda a gente sabe, <span class="laranja">mas fazer é emocional.</span></p>
       <hr class="filete rv">
       <p class="intro-lista rv">Em 4 horas vais</p>
       <ol class="resultados">
@@ -327,19 +396,19 @@ p{max-width:60ch;text-wrap:pretty}
   <section class="sec sec--grafite">
     <div class="wrap">
       <div class="quem">
-        <img class="rv" src="assets/img/palco.webp" alt="Whelisson Santos em palco perante um auditório cheio" width="768" height="930" loading="lazy" decoding="async">
+        <img class="rv revela" src="assets/img/palco.webp" alt="Whelisson Santos em palco perante um auditório cheio" width="768" height="930" decoding="async">
         <div>
           <p class="eyebrow rv">Quem te conduz</p>
-          <h2 class="rv">Whelisson Santos</h2>
+          <h2 class="rv" data-split>Whelisson Santos</h2>
           <hr class="filete rv">
           <p class="forte rv">Ex-atleta profissional de andebol, vice-campeão brasileiro e multicampeão no Rio de Janeiro, jogou em mais de 10 estados do Brasil. Hoje é especialista em alta performance e meio maratonista.</p>
           <p class="rv">Tinha energia para começar tudo e dificuldade em terminar, até aprender a governar isso. Hoje ajudo empresários e profissionais que vivem do próprio resultado a fazer o mesmo.</p>
         </div>
       </div>
       <div class="desporto">
-        <img class="rv" src="assets/img/andebol.webp" alt="Whelisson em jogo de andebol, com a bola, camisola azul n.º 2" width="960" height="960" style="object-position:32% 50%" loading="lazy" decoding="async">
-        <img class="rv" style="--i:1;object-position:50% 0%" src="assets/img/corrida.webp" alt="Whelisson de braços abertos na meia maratona" width="1333" height="2000" loading="lazy" decoding="async">
-        <blockquote class="rv" style="--i:2">No desporto aprendi cedo o que muitos empresários descobrem tarde: <span class="laranja">o resultado é de quem repete por tempo suficiente.</span></blockquote>
+        <img class="rv revela" src="assets/img/andebol.webp" alt="Whelisson em jogo de andebol, com a bola, camisola azul n.º 2" width="960" height="960" style="object-position:32% 50%" decoding="async">
+        <img class="rv revela" style="--i:1;object-position:50% 0%" src="assets/img/corrida.webp" alt="Whelisson de braços abertos na meia maratona" width="1333" height="2000" decoding="async">
+        <blockquote class="rv" style="--i:2" data-split>No desporto aprendi cedo o que muitos empresários descobrem tarde: <span class="laranja">o resultado é de quem repete por tempo suficiente.</span></blockquote>
       </div>
     </div>
   </section>
@@ -349,7 +418,7 @@ p{max-width:60ch;text-wrap:pretty}
     <div class="brilho" aria-hidden="true"></div>
     <div class="wrap">
       <p class="eyebrow rv">Inscrição</p>
-      <h2 class="rv titulo-evento">Saber <span class="laranja">não basta</span></h2>
+      <h2 class="rv titulo-evento" data-split="lados">Saber <span class="laranja">não basta</span></h2>
       <p class="limitados rv">Lugares limitados.</p>
       <div class="insc-grelha">
         <div>
@@ -376,7 +445,7 @@ p{max-width:60ch;text-wrap:pretty}
     <div class="wrap">
       <div class="faq-cab">
         <p class="eyebrow rv">Antes de decidires</p>
-        <h2 class="faq-titulo rv">Perguntas frequentes</h2>
+        <h2 class="faq-titulo rv" data-split>Perguntas frequentes</h2>
       </div>
       <div class="faq rv">
         <details><summary>Para quem é esta tarde?</summary><p>É para quem vive do próprio resultado, como empresários, autónomos, vendedores e profissionais liberais, e para quem não aguenta mais viver uma vida sem resultados. Não precisas de ter empresa.</p></details>
@@ -439,6 +508,74 @@ const upd = () => cta.classList.toggle('on', passouHero && vis.size === 0);
 new IntersectionObserver(([e]) => { passouHero = !e.isIntersecting; upd(); }, {threshold:.15}).observe(document.getElementById('hero'));
 const ioFim = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)); upd(); });
 ['inscricao','rodape'].forEach(id => ioFim.observe(document.getElementById(id)));
+
+/* ===== MOVIMENTO ===== */
+const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const temRato = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+/* 1. dividir títulos em palavras e letras (o leitor de ecrã lê o texto original) */
+document.querySelectorAll('[data-split]').forEach(el => {
+  const lados = el.dataset.split === 'lados';
+  el.classList.add('sp'); if (lados) el.classList.add('sp-lados');
+  el.setAttribute('aria-label', el.textContent.replace(/\s+/g,' ').trim());
+  let n = 0;
+  const parte = no => {
+    [...no.childNodes].forEach(c => {
+      if (c.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(t => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden','true');
+          [...t].forEach(ch => {
+            const l = document.createElement('span'); l.className = 'l'; l.textContent = ch;
+            l.style.setProperty('--d', (n * (lados ? 38 : 22)) + 'ms');
+            if (lados) l.style.setProperty('--x', (n % 2 ? 1 : -1) * (40 + (n * 7) % 50) + 'px');
+            n++; w.appendChild(l);
+          });
+          frag.appendChild(w);
+        });
+        c.replaceWith(frag);
+      } else if (c.nodeType === 1) parte(c);
+    });
+  };
+  parte(el);
+  /* depois da entrada, liberta as letras para reagirem ao rato */
+  const total = n * (lados ? 38 : 22) + 1200;
+  new MutationObserver((m, o) => { if (el.classList.contains('in')) { setTimeout(() => el.classList.add('feito'), total); o.disconnect(); } })
+    .observe(el, {attributes:true, attributeFilter:['class']});
+});
+
+/* fotos em cortina: o recorte esconde-as do IntersectionObserver, por isso observa-se o bloco-pai */
+const ioFoto = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.querySelectorAll('.revela').forEach(i => i.classList.add('in')); ioFoto.unobserve(e.target); }
+}), {threshold:.08});
+new Set([...document.querySelectorAll('.revela')].map(i => i.parentElement)).forEach(p => ioFoto.observe(p));
+
+/* 2. barra de progresso + paralaxe da bandeira e da ponte */
+const barra = document.getElementById('progresso');
+const lados = document.querySelectorAll('.hero__lado');
+let pedido = false;
+const anima = () => {
+  pedido = false;
+  const max = document.documentElement.scrollHeight - innerHeight;
+  barra.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  if (!calmo && scrollY < innerHeight * 1.2) lados.forEach((l, i) => l.style.transform = `translateY(${scrollY * (i ? .22 : .16)}px)`);
+};
+addEventListener('scroll', () => { if (!pedido) { pedido = true; requestAnimationFrame(anima); } }, {passive:true});
+anima();
+
+/* 3. botões magnéticos (só com rato) */
+if (temRato && !calmo) document.querySelectorAll('.btn').forEach(b => {
+  if (b.closest('.cta-fixo')) return;
+  b.classList.add('mag');
+  b.addEventListener('pointermove', e => {
+    const r = b.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width / 2) * .28, y = (e.clientY - r.top - r.height / 2) * .38;
+    b.style.transform = `translate(${x}px, ${y}px)`;
+  });
+  b.addEventListener('pointerleave', () => b.style.transform = '');
+});
 </script>
 </body>
 </html>
