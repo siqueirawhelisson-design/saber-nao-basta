@@ -217,6 +217,7 @@ p{max-width:60ch;text-wrap:pretty}
   background:linear-gradient(var(--laranja),var(--laranja)) center/18px 2px no-repeat,linear-gradient(var(--laranja),var(--laranja)) center/2px 18px no-repeat;
   transition:transform .35s var(--ease)}
 .faq details[open] summary::after{transform:rotate(45deg)}
+.faq-wa{display:inline-block;margin-top:10px;color:var(--laranja);font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
 .faq details p{padding:0 0 26px;color:var(--cinza)}
 
 /* ---------- Rodapé ---------- */
@@ -372,7 +373,7 @@ p{max-width:60ch;text-wrap:pretty}
         <details><summary>Quanto tempo dura?</summary><p>São 4 horas, das 14:00 às 18:00.</p></details>
         <details><summary>Onde é exatamente?</summary><p>No Orbit, no Largo da Lagoa 15, em Linda-a-Velha. Tens o mapa logo acima, na secção de inscrição.</p></details>
         <details><summary>Como garanto o meu lugar?</summary><p>Carregas em "Garantir o meu lugar" e fazes a inscrição. Os lugares são limitados, por isso não deixes para a última hora.</p></details>
-        <details><summary>Tenho outra dúvida, com quem falo?</summary><p>Fala comigo pelo WhatsApp, no link "Tenho uma dúvida" que está na secção de inscrição.</p></details>
+        <details><summary>Tenho outra dúvida, com quem falo?</summary><p>Fala comigo diretamente pelo WhatsApp. <a class="faq-wa" data-wa href="#">Enviar mensagem</a></p></details>
       </div>
     </div>
   </section>
@@ -391,7 +392,7 @@ p{max-width:60ch;text-wrap:pretty}
 /* ===== DADOS: tudo o que muda fica aqui ===== */
 const DADOS = {
   compra:   'https://buy.stripe.com/28EdR90xfgZ491RckC38400',
-  whatsapp: '',   // PENDENTE: número com indicativo, só dígitos (ex.: 351912345678). Vazio = esconde "Tenho uma dúvida".
+  whatsapp: '351933345075',
   mensagemWhatsapp: 'Olá! Tenho uma dúvida sobre o evento Saber Não Basta.'
 };
 
