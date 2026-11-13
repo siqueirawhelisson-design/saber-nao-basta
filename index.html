@@ -93,30 +93,40 @@ p{max-width:60ch;text-wrap:pretty}
 .brilho::after{right:max(-65vw,-550px);bottom:max(-70vw,-600px)}
 .sec > .wrap,.hero > .wrap{position:relative;z-index:1}
 
-/* ---------- 1. Hero ---------- */
-.hero{position:relative;min-height:min(100svh,960px);display:flex;align-items:flex-end;padding:96px 0 clamp(48px,7vw,96px);overflow:hidden}
-.hero__grelha{display:grid;grid-template-columns:1fr;gap:0}
-.hero__figura{position:relative;margin:0 auto;width:min(80%,400px)}
-.hero__figura::before{content:"";position:absolute;inset:8% -20% 0;border-radius:50%;z-index:-1;
-  background:radial-gradient(closest-side,rgba(255,122,0,.42),rgba(224,90,0,.14) 55%,transparent)}
-.hero__figura img{width:100%;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
-.hero__texto{margin-top:-6%;position:relative}
-.hero__data{font:700 .72rem/1.5 var(--f);letter-spacing:.22em;color:var(--laranja)}
-.hero h1{margin-top:18px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;font-size:clamp(2.7rem,11.4vw,6.6rem)}
+/* ---------- 1. Hero (composição do banner: foto ao centro, título a sobrepor a base) ---------- */
+.hero{position:relative;padding:76px 0 clamp(56px,8vw,96px);overflow:hidden;text-align:center}
+/* arcos de luz laranja nos cantos, como no banner */
+.hero__arco{position:absolute;pointer-events:none;z-index:0;border-radius:50%;border:2px solid transparent;
+  border-top-color:rgba(255,122,0,.85);filter:blur(1.5px) drop-shadow(0 0 18px rgba(255,122,0,.55))}
+.hero__arco--e{width:150vw;max-width:1500px;aspect-ratio:1;left:-118%;top:84%;transform:rotate(38deg)}
+.hero__arco--d{width:150vw;max-width:1500px;aspect-ratio:1;right:-118%;top:90%;transform:rotate(-38deg)}
+.hero .wrap{display:flex;flex-direction:column;align-items:center}
+.hero__figura{position:relative;width:min(78vw,520px);margin:0 auto}
+.hero__figura::before{content:"";position:absolute;inset:6% -25% 10%;border-radius:50%;z-index:-1;
+  background:radial-gradient(closest-side,rgba(255,122,0,.34),rgba(224,90,0,.1) 60%,transparent)}
+.hero__figura img{width:100%;-webkit-mask-image:linear-gradient(#000 62%,transparent 96%);mask-image:linear-gradient(#000 62%,transparent 96%)}
+.hero h1{position:relative;margin-top:-16%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
+  font-size:clamp(2.6rem,12vw,6rem);text-shadow:0 6px 30px rgba(0,0,0,.6)}
 .hero h1 span{display:block}
-.hero .filete{margin-top:22px}
-.hero__sub{margin-top:24px;font-size:clamp(1.08rem,1.6vw,1.3rem);font-weight:500;line-height:1.5;max-width:34ch}
-.hero__sub span{display:block}
-.hero__com{margin-top:16px;font-size:.95rem;max-width:44ch}
-.hero .btn{margin-top:32px}
-@media (min-width:900px){
-  .hero{align-items:stretch;padding-bottom:0}
-  .hero__grelha{grid-template-columns:1.05fr .95fr;align-items:end;gap:clamp(24px,4vw,64px)}
-  .hero__texto{margin-top:0;order:-1;padding-bottom:clamp(72px,9vw,120px);align-self:center}
-  .hero__figura{width:100%;max-width:560px;margin:0 0 0 auto}
-  .hero h1{font-size:clamp(2.7rem,5.4vw,5rem)}
-  .hero h1 span{white-space:nowrap}
-  .hero__figura img{-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+.hero .filete{margin:20px auto 0;width:min(70%,520px);height:3px;border-radius:3px}
+.hero__sub{margin:22px auto 0;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:500;line-height:1.5;max-width:46ch}
+.hero__com{margin:14px auto 0;font-size:.95rem;max-width:48ch}
+.hero__dados{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:30px;font-weight:700;font-size:1.05rem;line-height:1.35}
+.hero__dados > div{padding:12px 0}
+.hero__dados > div + div{border-top:2px solid var(--laranja);border-image:linear-gradient(90deg,transparent 35%,var(--laranja) 35% 65%,transparent 65%) 1}
+.hero__dados small{display:block;font-weight:500;font-size:.88rem;color:var(--cinza)}
+.hero .btn{margin-top:30px}
+@media (min-width:760px){
+  .hero{padding-top:96px}
+  .hero__figura{width:clamp(250px,36svh,460px)}
+  .hero__arco--e{left:-92%;top:46%}
+  .hero__arco--d{right:-92%;top:58%}
+  .hero h1{margin-top:-11%;font-size:min(6.6vw,6rem)}
+  .hero h1 span{display:inline}
+  .hero__dados{flex-direction:row;align-items:center;gap:0;margin-top:34px}
+  .hero__dados > div{padding:4px clamp(20px,3vw,40px)}
+  .hero__dados > div + div{border-top:0;border-image:none;border-left:2px solid var(--laranja)}
+  .hero__dados > div:last-child{text-align:left}
 }
 
 /* ---------- 2. Frases à porta ---------- */
@@ -227,18 +237,22 @@ p{max-width:60ch;text-wrap:pretty}
   <!-- 1. TOPO -->
   <section class="hero" id="hero">
     <div class="brilho" aria-hidden="true"></div>
-    <div class="wrap hero__grelha">
+    <span class="hero__arco hero__arco--e" aria-hidden="true"></span>
+    <span class="hero__arco hero__arco--d" aria-hidden="true"></span>
+    <div class="wrap">
       <div class="hero__figura rv">
-        <img src="assets/img/hero.webp" alt="Whelisson Santos, de fato cinza e braços cruzados" width="866" height="1100" fetchpriority="high">
+        <img src="assets/img/hero.webp" alt="Whelisson Santos, de fato cinza e braços cruzados" width="1023" height="1300" fetchpriority="high">
       </div>
-      <div class="hero__texto">
-        <p class="hero__data rv">5 DE DEZEMBRO · DAS 14:00 ÀS 18:00 · ORBIT, LINDA VELHA</p>
-        <h1 class="rv" style="--i:1"><span>Saber</span> <span class="laranja">Não basta</span></h1>
-        <hr class="filete rv" style="--i:2">
-        <p class="hero__sub rv" style="--i:2"><span>Tu sabes o que tens de fazer para crescer.</span> <span class="cinza">Nesta tarde descobres porque não fazes e como mudar isso antes de 2027.</span></p>
-        <p class="hero__com cinza rv" style="--i:3">Com Whelisson Santos, ex-atleta profissional e especialista em alta performance.</p>
-        <a class="btn rv" style="--i:4" data-compra href="#inscricao">Quero o meu lugar</a>
+      <h1 class="rv" style="--i:1"><span>Saber</span> <span class="laranja">Não basta</span></h1>
+      <hr class="filete rv" style="--i:2">
+      <p class="hero__sub rv" style="--i:2">Tu sabes o que tens de fazer para crescer. Neste dia descobres porque não fazes, e como mudar isso antes de 2027.</p>
+      <p class="hero__com cinza rv" style="--i:3">Com Whelisson Santos, ex-atleta profissional e especialista em alta performance.</p>
+      <div class="hero__dados rv" style="--i:3">
+        <div>5 de dezembro</div>
+        <div>das 14:00 às 18:00</div>
+        <div>Orbit, Linda Velha<small>Largo da Lagoa 15, Lisboa, Portugal</small></div>
       </div>
+      <a class="btn rv" style="--i:4" data-compra href="#inscricao">Quero o meu lugar</a>
     </div>
   </section>
 
@@ -336,10 +350,15 @@ p{max-width:60ch;text-wrap:pretty}
   <!-- 8. PERGUNTAS RÁPIDAS -->
   <section class="sec sec--grafite" id="perguntas">
     <div class="wrap">
-      <div class="sec-cab"><p class="eyebrow rv">Perguntas rápidas</p></div>
+      <div class="sec-cab"><p class="eyebrow rv">Perguntas frequentes</p></div>
       <div class="faq rv">
-        <details><summary>Preciso de ter empresa?</summary><p>Não, é para quem vive do próprio resultado, como empresários, autónomos, vendedores e profissionais liberais.</p></details>
-        <details><summary>É só uma palestra?</summary><p>Não, vais participar em exercícios práticos e sair daqui com a tua lista de renúncias feita.</p></details>
+        <details><summary>Para quem é esta tarde?</summary><p>É para quem vive do próprio resultado, como empresários, autónomos, vendedores e profissionais liberais. Não precisas de ter empresa.</p></details>
+        <details><summary>É só uma palestra?</summary><p>Não, vais participar em exercícios práticos e dinâmicas em grupo, e sair daqui com a tua lista de renúncias feita.</p></details>
+        <details><summary>O que levo para casa no fim?</summary><p>Sais a conhecer o padrão que te faz começar, parar e adiar, e com a tua lista de renúncias pronta para pôr em prática.</p></details>
+        <details><summary>Quanto tempo dura?</summary><p>São 4 horas, das 14:00 às 18:00, com coffee break saudável incluído.</p></details>
+        <details><summary>Onde é exatamente?</summary><p>No Orbit, no Largo da Lagoa 15, em Linda-a-Velha. Tens o mapa logo acima, na secção de inscrição.</p></details>
+        <details><summary>Como garanto o meu lugar?</summary><p>Carregas em "Garantir o meu lugar" e fazes a inscrição. Os lugares são limitados, por isso não deixes para a última hora.</p></details>
+        <details><summary>Tenho outra dúvida, com quem falo?</summary><p>Fala comigo pelo WhatsApp, no link "Tenho uma dúvida" que está na secção de inscrição.</p></details>
       </div>
     </div>
   </section>
