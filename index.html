@@ -34,7 +34,7 @@
 
   --f:'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  --sec:clamp(72px,11vw,140px);
+  --sec:clamp(72px,9vw,124px);
   --max:1200px;
   --pad:clamp(20px,5vw,64px);
   --ease:cubic-bezier(.22,1,.36,1);
@@ -65,7 +65,11 @@ p{max-width:60ch;text-wrap:pretty}
 /* ---------- Layout ---------- */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 .sec{padding:var(--sec) 0;position:relative}
-.sec--grafite{background:var(--grafite)}
+/* grafite entra e sai em gradiente: sem cortes secos entre secções */
+.sec--grafite{background:linear-gradient(180deg,var(--preto) 0,var(--grafite) 140px,var(--grafite) calc(100% - 140px),var(--preto) 100%)}
+.duas{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,88px)}
+@media (min-width:920px){.duas{grid-template-columns:.9fr 1.1fr;align-items:start}.duas .fixa{position:sticky;top:110px}}
+.sub{margin-top:22px;color:var(--cinza);font-size:clamp(1rem,1.3vw,1.12rem);max-width:42ch}
 .sec-cab{margin-bottom:clamp(40px,6vw,72px)}
 
 /* ---------- Botões: laranja, cantos ligeiramente arredondados, grandes ---------- */
@@ -139,46 +143,44 @@ p{max-width:60ch;text-wrap:pretty}
   .hero__dados > div:last-child{text-align:left}
 }
 
-/* ---------- 2. Frases à porta ---------- */
-.frases{list-style:none;display:grid;gap:clamp(18px,3vw,30px)}
-.frases li{font:700 clamp(1.45rem,3.6vw,2.6rem)/1.2 var(--f);letter-spacing:-.015em;max-width:26ch;text-wrap:balance}
+/* ---------- 2. Dores + para quem ---------- */
+.frases{list-style:none;border-top:1px solid var(--linha)}
+.frases li{padding:clamp(18px,2.4vw,26px) 0;border-bottom:1px solid var(--linha);
+  font:700 clamp(1.3rem,2.5vw,1.95rem)/1.25 var(--f);letter-spacing:-.015em;text-wrap:balance}
 .frases .aspa{color:var(--laranja)}
-.frases__fecho{margin-top:clamp(40px,6vw,64px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--linha);
-  font:800 clamp(1.1rem,2vw,1.4rem)/1.4 var(--f);color:var(--laranja);max-width:40ch}
 
-/* ---------- 3. O que levas ---------- */
-.destaque{font:800 clamp(2rem,5.6vw,4rem)/1.08 var(--f);letter-spacing:-.025em;max-width:16ch;text-wrap:balance}
-.destaque .laranja{display:inline}
-.intro-lista{margin-top:clamp(36px,5vw,56px);font-weight:600;color:var(--cinza)}
-.lista{list-style:none;margin-top:20px;border-top:1px solid var(--linha);max-width:880px}
-.lista li{display:grid;grid-template-columns:clamp(52px,7vw,84px) 1fr;gap:12px;padding:clamp(22px,3vw,30px) 0;border-bottom:1px solid var(--linha);
-  font-size:clamp(1.02rem,1.5vw,1.2rem);line-height:1.5}
-.lista b{font:800 clamp(1.3rem,2.4vw,1.8rem)/1.1 var(--f);color:var(--laranja)}
-.lista strong{font-weight:700}
+/* ---------- 3. O que levas (só resultados) ---------- */
+.destaque{font:800 clamp(2rem,4.6vw,3.8rem)/1.06 var(--f);letter-spacing:-.025em;max-width:14ch;text-wrap:balance}
+.intro-lista{font-weight:700;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cinza)}
+.lista{list-style:none;margin-top:18px;border-top:1px solid var(--linha)}
+.lista li{display:grid;grid-template-columns:clamp(48px,6vw,72px) 1fr;gap:12px;padding:clamp(20px,2.6vw,28px) 0;border-bottom:1px solid var(--linha);
+  font-size:clamp(1.02rem,1.4vw,1.15rem);line-height:1.5;color:var(--cinza)}
+.lista b{font:800 clamp(1.3rem,2.2vw,1.7rem)/1.1 var(--f);color:var(--laranja)}
+.lista strong{font-weight:700;color:var(--branco)}
 
-/* ---------- 4. Uma tarde diferente ---------- */
-.formatos{margin-top:28px;font:600 clamp(1rem,1.7vw,1.2rem)/1.9 var(--f);color:var(--cinza);max-width:none}
-.formatos span{white-space:nowrap}
-.formatos i{font-style:normal;color:var(--laranja);padding:0 .55em}
-
-/* ---------- 5. Faixa de fotos ---------- */
-.fotos{display:grid;grid-template-columns:1fr;gap:clamp(12px,2vw,20px);margin-top:clamp(36px,5vw,56px)}
-.fotos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px}
-@media (min-width:700px){.fotos{grid-template-columns:1fr 1fr}}
-.frase-grande{font:800 clamp(1.6rem,4vw,3rem)/1.15 var(--f);letter-spacing:-.02em;max-width:24ch;text-wrap:balance}
-
-/* ---------- 6. Quem te conduz ---------- */
-.quem{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,72px);align-items:center}
-@media (min-width:900px){.quem{grid-template-columns:1.1fr .9fr}}
-.quem img{width:100%;border-radius:6px;aspect-ratio:768/930;object-fit:cover}
-.quem h2{font-size:clamp(2rem,4.6vw,3.2rem)}
+/* ---------- 4. Quem sou (palco + desporto) ---------- */
+.quem{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,80px);align-items:center}
+@media (min-width:920px){.quem{grid-template-columns:1.1fr .9fr}}
+.quem img,.desporto img{width:100%;border-radius:6px;object-fit:cover}
+.quem img{aspect-ratio:4/5}
+@media (min-width:920px){.quem img{aspect-ratio:768/930}}
+.quem h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
 .quem .filete{margin-top:20px;width:120px;background:var(--laranja)}
-.quem p{margin-top:22px;color:var(--cinza)}
-.quem p + p{margin-top:16px}
-.quem p.forte{color:var(--branco);font-weight:500}
+.quem p{margin-top:20px;color:var(--cinza)}
+.quem p.forte{color:var(--branco);font-weight:500;font-size:1.05rem}
+.desporto{display:grid;grid-template-columns:1fr;gap:clamp(12px,2vw,20px);margin-top:clamp(56px,7vw,96px);align-items:center}
+.desporto img{aspect-ratio:4/5}
+.desporto blockquote{font:800 clamp(1.5rem,2.8vw,2.3rem)/1.18 var(--f);letter-spacing:-.02em;text-wrap:balance;padding-left:clamp(0px,2vw,24px)}
+.desporto blockquote::before{content:"";display:block;width:56px;height:3px;background:var(--laranja);margin-bottom:22px;border-radius:3px}
+@media (min-width:700px){.desporto{grid-template-columns:1fr 1fr}.desporto blockquote{grid-column:1/-1;order:-1;max-width:26ch}}
+@media (min-width:1080px){.desporto{grid-template-columns:1fr 1fr 1.15fr}.desporto blockquote{grid-column:auto;order:0}}
+
+/* ---------- Perguntas: título ---------- */
+.faq-titulo{font-size:clamp(2rem,4vw,3.2rem)}
 
 /* ---------- 7. Inscrição ---------- */
 .inscricao{overflow:hidden}
+.inscricao .brilho{-webkit-mask-image:linear-gradient(transparent,#000 30%,#000 60%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 60%,transparent)}
 .inscricao .brilho::before{background:radial-gradient(closest-side,rgba(255,122,0,.3),rgba(224,90,0,.1) 55%,transparent)}
 .inscricao .brilho::after{background:radial-gradient(closest-side,rgba(255,122,0,.3),rgba(224,90,0,.1) 55%,transparent)}
 .inscricao h2{font-weight:900;font-size:clamp(2.6rem,9vw,6rem);line-height:.98;letter-spacing:-.03em}
@@ -267,66 +269,60 @@ p{max-width:60ch;text-wrap:pretty}
     </div>
   </section>
 
-  <!-- 2. DEIXA ESTAS FRASES À PORTA -->
+  <!-- 2. DORES + PARA QUEM -->
   <section class="sec sec--grafite">
-    <div class="wrap">
-      <div class="sec-cab"><p class="eyebrow rv">Deixa estas frases à porta</p></div>
+    <div class="wrap duas">
+      <div class="fixa">
+        <p class="eyebrow rv">Deixa estas frases à porta</p>
+        <h2 class="rv">Se uma destas frases é tua, <span class="laranja">esta tarde foi pensada para ti.</span></h2>
+        <p class="sub rv">Para empresários, autónomos, vendedores e profissionais liberais, e para quem não aguenta mais viver uma vida sem resultados.</p>
+      </div>
       <ul class="frases">
         <li class="rv"><span class="aspa">“</span>Amanhã começo.<span class="aspa">”</span></li>
-        <li class="rv"><span class="aspa">“</span>Ainda não estou pronto.<span class="aspa">”</span></li>
-        <li class="rv"><span class="aspa">“</span>Este mês foi fraco, o próximo é que vai ser.<span class="aspa">”</span></li>
-        <li class="rv"><span class="aspa">“</span>Tenho de pensar melhor antes de avançar.<span class="aspa">”</span></li>
-        <li class="rv"><span class="aspa">“</span>Os outros têm menos capacidade e estão a crescer mais do que eu.<span class="aspa">”</span></li>
+        <li class="rv" style="--i:1"><span class="aspa">“</span>Ainda não estou pronto.<span class="aspa">”</span></li>
+        <li class="rv" style="--i:2"><span class="aspa">“</span>Este mês foi fraco, o próximo é que vai ser.<span class="aspa">”</span></li>
+        <li class="rv" style="--i:3"><span class="aspa">“</span>Tenho de pensar melhor antes de avançar.<span class="aspa">”</span></li>
+        <li class="rv" style="--i:4"><span class="aspa">“</span>Os outros têm menos capacidade e estão a crescer mais do que eu.<span class="aspa">”</span></li>
       </ul>
-      <p class="frases__fecho rv">Se uma destas frases é tua, esta tarde foi pensada para ti.</p>
     </div>
   </section>
 
-  <!-- 3. O QUE LEVAS DAQUI -->
+  <!-- 3. O QUE LEVAS DAQUI (só resultados; a experiência é surpresa) -->
   <section class="sec">
-    <div class="wrap">
-      <p class="eyebrow rv">O que levas daqui</p>
-      <p class="destaque rv" style="margin-top:20px">Saber, toda a gente sabe, <span class="laranja">mas fazer é emocional.</span></p>
-      <p class="intro-lista rv">Em 4 horas vais:</p>
-      <ol class="lista">
-        <li class="rv"><b>01</b><span>Identificar o padrão que te faz começar, parar e adiar.</span></li>
-        <li class="rv"><b>02</b><span><strong>Dominar o teu estado</strong>, porque a qualidade das tuas decisões depende da energia em que as tomas.</span></li>
-        <li class="rv"><b>03</b><span><strong>Fazer a tua lista de renúncias</strong>, com o que tens de parar de fazer para o resultado chegar.</span></li>
-        <li class="rv"><b>04</b><span>Construir a identidade de quem age com medo e repete até ganhar.</span></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 4. UMA TARDE DIFERENTE -->
-  <section class="sec sec--grafite">
-    <div class="wrap">
-      <p class="eyebrow rv">Uma tarde diferente</p>
-      <h2 class="rv">Não vais passar 4 horas sentado a ouvir.</h2>
-      <p class="formatos rv">Vais ter exercícios práticos, histórias reais, vídeos, dinâmicas em grupo e um coffee break saudável.</p>
-    </div>
-  </section>
-
-  <!-- 5. FAIXA DE FOTOS -->
-  <section class="sec">
-    <div class="wrap">
-      <p class="frase-grande rv">No desporto aprendi cedo o que muitos empresários descobrem tarde: <span class="laranja">o resultado é de quem repete.</span></p>
-      <div class="fotos">
-        <img class="rv" src="assets/img/andebol.webp" alt="Whelisson em jogo de andebol, com a bola, camisola azul n.º 2" width="960" height="960" style="object-position:30% 50%" loading="lazy" decoding="async">
-        <img class="rv" style="--i:1;object-position:50% 20%" src="assets/img/corrida.webp" alt="Whelisson de braços abertos na meia maratona" width="1333" height="2000" loading="lazy" decoding="async">
+    <div class="wrap duas">
+      <div class="fixa">
+        <p class="eyebrow rv">O que levas daqui</p>
+        <p class="destaque rv" style="margin-top:20px">Saber, toda a gente sabe, <span class="laranja">mas fazer é emocional.</span></p>
+      </div>
+      <div>
+        <p class="intro-lista rv">Em 4 horas vais</p>
+        <ol class="lista">
+          <li class="rv"><b>01</b><span><strong>Reconhecer os padrões</strong> que te fazem começar, parar e adiar.</span></li>
+          <li class="rv" style="--i:1"><b>02</b><span><strong>Dominar o teu estado</strong>, porque a qualidade das tuas decisões depende da energia em que as tomas.</span></li>
+          <li class="rv" style="--i:2"><b>03</b><span><strong>Entender o poder da tua identidade</strong>, a de quem age com medo e repete até ganhar.</span></li>
+          <li class="rv" style="--i:3"><b>04</b><span><strong>Sair mais confiante</strong> e com as decisões que andas a adiar tomadas.</span></li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <!-- 6. QUEM TE CONDUZ -->
+  <!-- 4. QUEM TE CONDUZ (palco + desporto) -->
   <section class="sec sec--grafite">
-    <div class="wrap quem">
-      <img class="rv" src="assets/img/palco.webp" alt="Whelisson Santos em palco perante um auditório cheio" width="768" height="930" loading="lazy" decoding="async">
-      <div>
-        <p class="eyebrow rv">Quem te conduz</p>
-        <h2 class="rv">Whelisson Santos</h2>
-        <hr class="filete rv">
-        <p class="forte rv">Ex-atleta profissional de andebol, vice-campeão brasileiro e multicampeão no Rio de Janeiro, jogou em mais de 10 estados do Brasil. Hoje é especialista em alta performance e meio maratonista.</p>
-        <p class="rv">Tinha energia para começar tudo e dificuldade em terminar, até aprender a governar isso. Hoje ajudo empresários e profissionais que vivem do próprio resultado a fazer o mesmo.</p>
+    <div class="wrap">
+      <div class="quem">
+        <img class="rv" src="assets/img/palco.webp" alt="Whelisson Santos em palco perante um auditório cheio" width="768" height="930" loading="lazy" decoding="async">
+        <div>
+          <p class="eyebrow rv">Quem te conduz</p>
+          <h2 class="rv">Whelisson Santos</h2>
+          <hr class="filete rv">
+          <p class="forte rv">Ex-atleta profissional de andebol, vice-campeão brasileiro e multicampeão no Rio de Janeiro, jogou em mais de 10 estados do Brasil. Hoje é especialista em alta performance e meio maratonista.</p>
+          <p class="rv">Tinha energia para começar tudo e dificuldade em terminar, até aprender a governar isso. Hoje ajudo empresários e profissionais que vivem do próprio resultado a fazer o mesmo.</p>
+        </div>
+      </div>
+      <div class="desporto">
+        <img class="rv" src="assets/img/andebol.webp" alt="Whelisson em jogo de andebol, com a bola, camisola azul n.º 2" width="960" height="960" style="object-position:32% 50%" loading="lazy" decoding="async">
+        <img class="rv" style="--i:1;object-position:50% 20%" src="assets/img/corrida.webp" alt="Whelisson de braços abertos na meia maratona" width="1333" height="2000" loading="lazy" decoding="async">
+        <blockquote class="rv" style="--i:2">No desporto aprendi cedo o que muitos empresários descobrem tarde: <span class="laranja">o resultado é de quem repete.</span></blockquote>
       </div>
     </div>
   </section>
@@ -358,15 +354,17 @@ p{max-width:60ch;text-wrap:pretty}
     </div>
   </section>
 
-  <!-- 8. PERGUNTAS RÁPIDAS -->
+  <!-- 8. PERGUNTAS FREQUENTES -->
   <section class="sec sec--grafite" id="perguntas">
-    <div class="wrap">
-      <div class="sec-cab"><p class="eyebrow rv">Perguntas frequentes</p></div>
+    <div class="wrap duas">
+      <div class="fixa">
+        <p class="eyebrow rv">Antes de decidires</p>
+        <h2 class="faq-titulo rv">Perguntas frequentes</h2>
+      </div>
       <div class="faq rv">
-        <details><summary>Para quem é esta tarde?</summary><p>É para quem vive do próprio resultado, como empresários, autónomos, vendedores e profissionais liberais. Não precisas de ter empresa.</p></details>
-        <details><summary>É só uma palestra?</summary><p>Não, vais participar em exercícios práticos e dinâmicas em grupo, e sair daqui com a tua lista de renúncias feita.</p></details>
-        <details><summary>O que levo para casa no fim?</summary><p>Sais a conhecer o padrão que te faz começar, parar e adiar, e com a tua lista de renúncias pronta para pôr em prática.</p></details>
-        <details><summary>Quanto tempo dura?</summary><p>São 4 horas, das 14:00 às 18:00, com coffee break saudável incluído.</p></details>
+        <details><summary>Para quem é esta tarde?</summary><p>É para quem vive do próprio resultado, como empresários, autónomos, vendedores e profissionais liberais, e para quem não aguenta mais viver uma vida sem resultados. Não precisas de ter empresa.</p></details>
+        <details><summary>O que levo para casa no fim?</summary><p>Sais a reconhecer os padrões que te travam, mais confiante e com as decisões que andavas a adiar tomadas.</p></details>
+        <details><summary>Quanto tempo dura?</summary><p>São 4 horas, das 14:00 às 18:00.</p></details>
         <details><summary>Onde é exatamente?</summary><p>No Orbit, no Largo da Lagoa 15, em Linda-a-Velha. Tens o mapa logo acima, na secção de inscrição.</p></details>
         <details><summary>Como garanto o meu lugar?</summary><p>Carregas em "Garantir o meu lugar" e fazes a inscrição. Os lugares são limitados, por isso não deixes para a última hora.</p></details>
         <details><summary>Tenho outra dúvida, com quem falo?</summary><p>Fala comigo pelo WhatsApp, no link "Tenho uma dúvida" que está na secção de inscrição.</p></details>
@@ -387,7 +385,7 @@ p{max-width:60ch;text-wrap:pretty}
 <script>
 /* ===== DADOS: tudo o que muda fica aqui ===== */
 const DADOS = {
-  compra:   '',   // PENDENTE: link de compra (ex.: https://buy.stripe.com/...). Vazio = botões levam à secção de inscrição.
+  compra:   'https://buy.stripe.com/28EdR90xfgZ491RckC38400',
   whatsapp: '',   // PENDENTE: número com indicativo, só dígitos (ex.: 351912345678). Vazio = esconde "Tenho uma dúvida".
   mensagemWhatsapp: 'Olá! Tenho uma dúvida sobre o evento Saber Não Basta.'
 };
