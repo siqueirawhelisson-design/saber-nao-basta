@@ -93,38 +93,48 @@ p{max-width:60ch;text-wrap:pretty}
 .brilho::after{right:max(-65vw,-550px);bottom:max(-70vw,-600px)}
 .sec > .wrap,.hero > .wrap{position:relative;z-index:1}
 
-/* ---------- 1. Hero (composição do banner: foto ao centro, título a sobrepor a base) ---------- */
-.hero{position:relative;padding:76px 0 clamp(56px,8vw,96px);overflow:hidden;text-align:center}
-/* arcos de luz laranja nos cantos, como no banner */
-.hero__arco{position:absolute;pointer-events:none;z-index:0;border-radius:50%;border:2px solid transparent;
-  border-top-color:rgba(255,122,0,.85);filter:blur(1.5px) drop-shadow(0 0 18px rgba(255,122,0,.55))}
-.hero__arco--e{width:150vw;max-width:1500px;aspect-ratio:1;left:-118%;top:84%;transform:rotate(38deg)}
-.hero__arco--d{width:150vw;max-width:1500px;aspect-ratio:1;right:-118%;top:90%;transform:rotate(-38deg)}
+/* ---------- 1. Hero (réplica da composição do banner) ---------- */
+.hero{position:relative;min-height:100svh;padding:72px 0 clamp(40px,5vw,64px);overflow:hidden;text-align:center;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  background:radial-gradient(70% 55% at 50% 30%,#2a1a10 0%,transparent 70%),var(--preto)}
+/* bandeira (esquerda) e ponte (direita), tiradas do banner, a fundir no preto */
+.hero__lado{position:absolute;top:0;z-index:0;pointer-events:none;background-size:cover;background-repeat:no-repeat}
+.hero__lado--e{left:0;width:40%;height:66%;background-image:url(assets/img/bandeira.webp);background-position:right top;
+  -webkit-mask-image:linear-gradient(90deg,#000 45%,transparent),linear-gradient(#000 55%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,#000 45%,transparent),linear-gradient(#000 55%,transparent);mask-composite:intersect}
+.hero__lado--d{right:0;width:50%;height:70%;background-image:url(assets/img/ponte.webp);background-position:left top;
+  -webkit-mask-image:linear-gradient(270deg,#000 55%,transparent),linear-gradient(#000 55%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(270deg,#000 55%,transparent),linear-gradient(#000 55%,transparent);mask-composite:intersect}
+/* arcos de luz laranja nos cantos de baixo */
+.hero__arco{position:absolute;pointer-events:none;z-index:0;border-radius:50%;border:3px solid transparent;
+  border-top-color:rgba(255,122,0,.9);filter:blur(2px) drop-shadow(0 0 22px rgba(255,122,0,.6))}
+.hero__arco--e{width:120vw;max-width:1400px;aspect-ratio:1;left:-100%;top:78%;transform:rotate(40deg)}
+.hero__arco--d{width:120vw;max-width:1400px;aspect-ratio:1;right:-100%;top:82%;transform:rotate(-40deg)}
 .hero .wrap{display:flex;flex-direction:column;align-items:center}
-.hero__figura{position:relative;width:min(78vw,520px);margin:0 auto}
-.hero__figura::before{content:"";position:absolute;inset:6% -25% 10%;border-radius:50%;z-index:-1;
-  background:radial-gradient(closest-side,rgba(255,122,0,.34),rgba(224,90,0,.1) 60%,transparent)}
-.hero__figura img{width:100%;-webkit-mask-image:linear-gradient(#000 62%,transparent 96%);mask-image:linear-gradient(#000 62%,transparent 96%)}
-.hero h1{position:relative;margin-top:-16%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
-  font-size:clamp(2.6rem,12vw,6rem);text-shadow:0 6px 30px rgba(0,0,0,.6)}
+.hero__figura{position:relative;width:min(88vw,430px);margin:0 auto}
+.hero__figura img{width:100%;-webkit-mask-image:linear-gradient(#000 78%,transparent 99%);mask-image:linear-gradient(#000 78%,transparent 99%)}
+.hero h1{position:relative;margin-top:-9%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
+  font-size:clamp(2.5rem,11.5vw,5.5rem);text-shadow:0 4px 24px rgba(0,0,0,.7)}
 .hero h1 span{display:block}
-.hero .filete{margin:20px auto 0;width:min(70%,520px);height:3px;border-radius:3px}
-.hero__sub{margin:22px auto 0;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:500;line-height:1.5;max-width:46ch}
-.hero__com{margin:14px auto 0;font-size:.95rem;max-width:48ch}
-.hero__dados{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:30px;font-weight:700;font-size:1.05rem;line-height:1.35}
-.hero__dados > div{padding:12px 0}
+.hero .filete{margin:16px auto 0;width:min(56%,620px);height:3px;border-radius:3px}
+.hero__sub{margin:18px auto 0;font-size:clamp(1rem,1.5vw,1.3rem);font-weight:500;line-height:1.45;max-width:52ch}
+.hero__com{margin:10px auto 0;font-size:.92rem;max-width:56ch}
+.hero__dados{display:flex;flex-direction:column;align-items:center;margin-top:22px;font-weight:700;font-size:clamp(1rem,1.5vw,1.3rem);line-height:1.3}
+.hero__dados > div{padding:10px 0}
 .hero__dados > div + div{border-top:2px solid var(--laranja);border-image:linear-gradient(90deg,transparent 35%,var(--laranja) 35% 65%,transparent 65%) 1}
-.hero__dados small{display:block;font-weight:500;font-size:.88rem;color:var(--cinza)}
-.hero .btn{margin-top:30px}
+.hero__dados small{display:block;font-weight:500;font-size:.72em;color:var(--cinza)}
+.hero .btn{margin-top:24px}
+@media (max-width:759px){
+  .hero__lado--e{width:60%;height:46%;opacity:.8}
+  .hero__lado--d{width:60%;height:42%;opacity:.8}
+}
 @media (min-width:760px){
-  .hero{padding-top:96px}
-  .hero__figura{width:clamp(250px,36svh,460px)}
-  .hero__arco--e{left:-92%;top:46%}
-  .hero__arco--d{right:-92%;top:58%}
-  .hero h1{margin-top:-11%;font-size:min(6.6vw,6rem)}
+  /* proporções do banner: figura ~1/3 da largura, título ~2/3 */
+  .hero__figura{width:min(34vw,46svh,640px)}
+  .hero h1{margin-top:-8%;font-size:min(6.4vw,10svh,7rem);white-space:nowrap}
   .hero h1 span{display:inline}
-  .hero__dados{flex-direction:row;align-items:center;gap:0;margin-top:34px}
-  .hero__dados > div{padding:4px clamp(20px,3vw,40px)}
+  .hero__dados{flex-direction:row;align-items:center}
+  .hero__dados > div{padding:2px clamp(20px,3vw,44px)}
   .hero__dados > div + div{border-top:0;border-image:none;border-left:2px solid var(--laranja)}
   .hero__dados > div:last-child{text-align:left}
 }
@@ -236,7 +246,8 @@ p{max-width:60ch;text-wrap:pretty}
 
   <!-- 1. TOPO -->
   <section class="hero" id="hero">
-    <div class="brilho" aria-hidden="true"></div>
+    <span class="hero__lado hero__lado--e" aria-hidden="true"></span>
+    <span class="hero__lado hero__lado--d" aria-hidden="true"></span>
     <span class="hero__arco hero__arco--e" aria-hidden="true"></span>
     <span class="hero__arco hero__arco--d" aria-hidden="true"></span>
     <div class="wrap">
