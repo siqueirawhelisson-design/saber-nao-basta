@@ -139,7 +139,7 @@ em{font-style:normal;color:var(--laranja)}
 #analise p{font-weight:700;font-size:1.2rem}
 
 /* ---------- 5. Resultado ---------- */
-.res-topo{padding:clamp(48px,8vw,100px) 0 clamp(48px,7vw,88px);background:radial-gradient(60% 70% at 15% 0%,#2a1606 0%,transparent 70%),var(--preto)}
+.res-topo{padding:clamp(48px,8vw,100px) 0 clamp(48px,7vw,88px);background:var(--preto)}
 .res-grelha{display:grid;gap:40px;align-items:end}
 .res-cab{container-type:inline-size;min-width:0}
 .perfil-titulo{margin:16px 0 0;font-size:clamp(1.3rem,3.6vw,1.9rem);font-weight:700;line-height:1.25;color:var(--cinza)}
@@ -157,7 +157,7 @@ em{font-style:normal;color:var(--laranja)}
 .barra.dominante .barra-topo strong,.barra.dominante .barra-topo span{font-weight:800}
 .barra.dominante .barra-topo span{color:var(--laranja)}
 .barra-trilho{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
-.barra-trilho i{display:block;height:100%;width:0;border-radius:999px;background:rgba(255,255,255,.35);transition:width 1.2s var(--ease)}
+.barra-trilho i{display:block;height:100%;width:100%;border-radius:999px;background:rgba(255,255,255,.35);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease)}
 .barra.dominante .barra-trilho i{background:var(--laranja)}
 
 .res-corpo{padding:clamp(56px,8vw,110px) 0}
@@ -167,9 +167,10 @@ em{font-style:normal;color:var(--laranja)}
 .abre::before{content:"";display:block;width:40px;height:3px;background:var(--laranja);margin:0 auto 26px}
 .citacao{font-weight:800;font-size:clamp(1.4rem,3.4vw,2.4rem);line-height:1.25;letter-spacing:-.015em;text-wrap:balance}
 .ecos{list-style:none;display:grid;gap:14px}
-.ecos li{position:relative;background:var(--grafite);border:1px solid var(--linha);border-left:3px solid var(--laranja);border-radius:10px;padding:24px 24px 24px 26px;font-weight:600;font-size:clamp(1.05rem,1.7vw,1.2rem);line-height:1.45}
+.ecos li{position:relative;background:var(--grafite);border:1px solid var(--linha);border-radius:10px;padding:52px 24px 24px;font-weight:600;font-size:clamp(1.05rem,1.7vw,1.2rem);line-height:1.45}
+.ecos li::before{content:"\201C";position:absolute;top:8px;left:22px;font-weight:900;font-size:3rem;line-height:1;color:var(--laranja)}
 .custos{display:grid;gap:14px}
-.custo{padding:24px 22px 26px;background:var(--grafite);border:1px solid var(--linha);border-top:3px solid var(--laranja);border-radius:10px}
+.custo{padding:24px 22px 26px;background:var(--grafite);border:1px solid var(--linha);border-radius:10px}
 .custo span{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--laranja);margin-bottom:10px}
 .custo p{font-size:1.02rem;line-height:1.55}
 .faixa{background:var(--grafite);margin-top:clamp(56px,8vw,100px);padding:clamp(48px,7vw,88px) 0;border-block:1px solid var(--linha)}
@@ -192,7 +193,7 @@ em{font-style:normal;color:var(--laranja)}
 }
 
 /* Venda */
-.venda-faixa{padding:clamp(56px,8vw,110px) 0 48px;background:radial-gradient(55% 60% at 85% 30%,#2a1606 0%,transparent 70%),var(--preto);border-top:1px solid var(--linha)}
+.venda-faixa{padding:clamp(56px,8vw,110px) 0 48px;background:var(--grafite);border-top:1px solid var(--linha)}
 .venda-grelha{display:grid;gap:44px;align-items:center}
 .venda h2{margin:16px 0 28px;max-width:20ch}
 .v-intro{color:var(--cinza-2);font-size:.92rem}
@@ -728,10 +729,10 @@ function desenhaResultado(){
     d.innerHTML = '<div class="barra-topo"><strong></strong><span></span></div><div class="barra-trilho"><i></i></div>';
     d.querySelector("strong").textContent = PERFIS[cod].nome;
     d.querySelector("span").textContent = pct[cod] + "%";
-    d.dataset.largura = Math.max(2, pct[cod]) + "%";
+    d.dataset.largura = Math.max(2, pct[cod]) / 100;
     barras.appendChild(d);
   });
-  setTimeout(() => barras.querySelectorAll(".barra").forEach(b => b.querySelector("i").style.width = b.dataset.largura), 350);
+  setTimeout(() => barras.querySelectorAll(".barra").forEach(b => b.querySelector("i").style.transform = "scaleX(" + b.dataset.largura + ")"), 350);
 
   const t = $("r-titulo"); t.textContent = "";
   t.append(resultado.nome + ", o sabotador que mais te trava é");
